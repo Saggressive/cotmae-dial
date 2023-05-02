@@ -1,0 +1,10 @@
+output/
+save_pretraomed_model/
+cotmae-dial_v2/
+cotmae-dial_v3/
+data/
+dialo_finetune/data/
+dialo_finetune/log/
+dialo_finetune/model/
+dialo_finetune/save_model/
+dialo_finetune/tflog/

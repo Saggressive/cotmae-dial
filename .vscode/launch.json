@@ -1,0 +1,58 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "pretrain",
+            "type": "python",
+            "request": "launch",
+            "program": "/mmu_nlp/wuxing/suzhenpeng/cotmae-dial/run_pretraining.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": [
+                "--model_name_or_path", "bert-base-uncased",
+                "--output_dir", "output/debug" ,
+                "--do_train" ,
+                "--logging_steps", "20" ,
+                "--save_steps","100" ,
+                "--save_total_limit", "4" ,
+                "--fp16" ,
+                "--warmup_ratio", "0.1" ,
+                "--logging_dir", "output/debug/cotmae" ,
+                "--per_device_train_batch_size" ,"4" ,
+                "--gradient_accumulation_steps", "1" ,
+                "--learning_rate", "1e-4" ,
+                "--max_steps", "200" ,
+                "--overwrite_output_dir" ,
+                "--dataloader_drop_last" ,
+                "--dataloader_num_workers", "16" ,
+                "--context_seq_length", "128" ,
+                "--response_seq_length", "128" ,
+                "--train_path", "data/ubuntu/train/data.json" ,
+                "--weight_decay", "0.01", 
+                "--encoder_mask_ratio", "0.30" ,
+                "--decoder_mask_ratio", "0.45" ,
+                "--use_decoder_head" ,
+                "--enable_head_mlm" ,
+                "--n_head_layers", "2",
+            ],
+            "env":{
+                "CUDA_VISIBLE_DEVICES":"1"
+            }
+        },
+        {
+            "name": "test",
+            "type": "python",
+            "request": "launch",
+            "program": "/mmu_nlp/wuxing/suzhenpeng/cotmae-dial/dialo_finetune/test.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "cwd": "/mmu_nlp/wuxing/suzhenpeng/cotmae-dial/dialo_finetune",
+            "env":{
+                "CUDA_VISIBLE_DEVICES":"1"
+            }
+        }
+    ]
+}
